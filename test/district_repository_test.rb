@@ -6,13 +6,13 @@ class DistrictRepositoryTest < Minitest::Test
     assert DistrictRepository
   end
 
-  def test_it_loads_data
-    skip
-    dr = DistrictRepository.new
-    dr.load_data(:kindergarten => "./data/Kindergartners in full-day program.csv")
-
-    assert dr.find_by_name("ACADEMY 20")
-  end
+  # def test_it_loads_data
+  #   skip
+  #   dr = DistrictRepository.new
+  #   dr.load_data(:kindergarten => "./datatest/kids.csv")
+  #
+  #   assert dr.find_by_name("Colorado")
+  # end
 
   def test_find_by_name
     dr = DistrictRepository.new

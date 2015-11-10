@@ -3,5 +3,9 @@ class District
   def initialize(name)
     @name = name.values.first
   end
-  
+
+  def enrollment
+    EnrollmentRepo.find_by_name(name)
+  end
+
 end

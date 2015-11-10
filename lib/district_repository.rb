@@ -1,4 +1,6 @@
 require './lib/district'
+require './lib/parser'
+require 'pry'
 class DistrictRepository
   attr_reader :districts
   def initialize
@@ -6,8 +8,16 @@ class DistrictRepository
     @districts = []
   end
 
-  def load_data(parser_and_filename)
-    create_districts(Parser.get_names(parser_and_filename))
+  def load_data(info)
+    #hash comes in with parser info, symbol and filename
+    # info.split
+    pars = Parser.new
+    create_districts(pars.get_names(info))
+    districts
+  end
+
+  def hash_parser_info
+
   end
 
   def create_districts(names_array)

@@ -6,9 +6,9 @@ class ParserTest < Minitest::Test
     assert Parser
   end
 
-  def test_it_takes_a_filename
-    assert Parser.parse("../testdata/kid.csv")
-  end
+  # def test_it_takes_a_filename
+  #   assert Parser.get_names("../testdata/kid.csv")
+  # end
 
 
 end
