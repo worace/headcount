@@ -1,7 +1,7 @@
 class District
   attr_reader :name
   def initialize(name)
-    @name = name.values.first
+    @name = name.values.first.upcase
   end
 
   def enrollment
