@@ -2,6 +2,7 @@ require 'csv'
 require 'pry'
 
 class EnrollmentRepo
+  attr_reader :enrollments
 
   def initialize
     @enrollments = []
@@ -26,5 +27,13 @@ class EnrollmentRepo
 
   def find_by_name(name)
       @enrollments.find{|enrollment| enrollment.name == name.upcase}
+  end
+
+  def add_enrollments(enrollments)
+    # enrollments.each do |en|
+    #   @enrollments << en
+    # end
+    @enrollments += enrollments
+
   end
 end
