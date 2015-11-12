@@ -15,4 +15,5 @@ class EnrollmentRepoTest < Minitest::Test
     })
     assert_equal "COLORADO", er.find_by_name("Colorado").name
   end
+
 end

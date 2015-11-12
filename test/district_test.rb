@@ -17,7 +17,4 @@ class DistrictTest < Minitest::Test
 
     assert_equal 'ALABAMA', d.name
   end
-
-
-
 end

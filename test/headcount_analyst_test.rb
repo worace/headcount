@@ -41,4 +41,28 @@ class HeadcountAnalystTest < Minitest::Test
     average = ha.kindergarten_participation_rate_variation_of_enrollments(e1,e2)
     assert_equal 0.6, average
   end
+
+  def test_it_averages_enrollments
+    dr = DistrictRepository.new
+
+    ha = HeadcountAnalyst.new(dr)
+    e1 = Enrollment.new({name: "Dist_1",
+                        kindergarten_participation: {2010 => 2.0, 2011 => 3.0}})
+    average = ha.kindergarten_participation_average(e1)
+    assert_equal 2.5, average
+  end
+
+  def test_it_calculates_trends
+    e1 = Enrollment.new({name: "Dist_1",
+                        kindergarten_participation: {2010 => 1.0, 2012 => 2.0, 2014 => 2.0}})
+    e2 = Enrollment.new({name: "Dist_2",
+                        kindergarten_participation: {2010 => 2.0, 2011 => 3.0, 2014 => 1.0}})
+
+    dr = DistrictRepository.new
+
+    ha = HeadcountAnalyst.new(dr)
+    expected = {2010 => 2.0, 2014 => 0.5}
+    # trend =ha.kindergarten_participation_rate_variation_trend("Dist_1", against: "Dist_2")
+    assert_equal expected, ha.kindergarten_trend_for_enrollments(e1,e2)
+  end
 end

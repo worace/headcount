@@ -3,15 +3,25 @@ require './lib/parser'
 require 'pry'
 class DistrictRepository
   attr_reader :districts, :enrollment_repo
+  
   def initialize
     @enrollment_repo = EnrollmentRepo.new
     @districts = []
   end
 
   def load_data(data)
+    # data = {
+    #   :enrollment => {
+    #     :kindergarten => "./test/data/kid.csv"
+    #   }
+
+      enrollment_repo.load_data(data)
+      create_districts_from_repos!
+
+
     #load all files
     #load all data
-    create_districts(Parser.get_names(data[:enrollment][:kindergarten]))
+    # create_districts(Parser.get_names(data[:enrollment][:kindergarten]))
     #tell enroll_repo to load file
   end
 
