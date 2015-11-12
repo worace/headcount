@@ -7,7 +7,7 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_loads_data
-    # skip
+    skip
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {

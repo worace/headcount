@@ -1,6 +1,6 @@
 require 'csv'
 require 'pry'
-
+require './lib/parser'
 class EnrollmentRepo
   attr_reader :enrollments
 
@@ -10,16 +10,19 @@ class EnrollmentRepo
   end
 
   def load_data(data)
-    loaded_data = CSV.open(data[:enrollment][:kindergarten], headers: true, header_converters: :symbol).reduce([]) do |array, row|
-      if @name[:name] == row[:location]
-       @name[:kindergarten_participation][row[:timeframe].to_i]= row[:data].to_f.round(3)
-       array << @name
-      else
-        @name = {name: row[:location], kindergarten_participation:{row[:timeframe].to_i => row[:data].to_f.round(3)}}
-        array << @name
-      end.uniq
+    # puts data[:enrollment][:kindergarten]
+  #  puts data[:enrollment][:high_school_graduation]
+    loaded_data = []
+    # binding.pry
+    # puts data[:enrollment].to_a.inspect
+    data[:enrollment].each do |filename|
+      # puts filename
+      # binding.pry
+      loaded_data += Parser.parse(filename)
     end
-
+    # loaded_data = Parser.parse(data[:enrollment][:kindergarten])
+    # loaded_data += Parser.parse(data[:enrollment][:high_school_graduation])
+    # binding.pry
     loaded_data.each do |name|
       @enrollments << Enrollment.new(name)
     end
